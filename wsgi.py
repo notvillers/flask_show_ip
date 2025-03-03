@@ -16,6 +16,9 @@ app.wsgi_app = ProxyFix(app.wsgi_app,
 def handle_exception(_):
     '''
         Handle exceptions
+
+        Args:
+            _: Exception (ignored)
     '''
     return jsonify({"error": "unexpected error"}), 500
 
