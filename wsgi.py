@@ -2,7 +2,7 @@
     Flask webapp
 '''
 import os
-from flask import Flask, request, Response
+from flask import Flask, request, Response, jsonify
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 # Flask app
@@ -20,13 +20,16 @@ def index():
     '''
         Index
     '''
-    try:
-        return Response(f"{request.remote_addr or ''}\n",
-                        mimetype = "text/plain",
-                        headers = {"X-Your-Ip": request.remote_addr})
-    except Exception as e: # pylint: disable=broad-exception-caught
-        return Response(f"{e}\n",
-                        mimetype = "text/plain")
+    return Response(f"{request.remote_addr or ''}\n",
+                    mimetype = "text/plain",
+                    headers = {"X-Your-Ip": request.remote_addr})
+
+@app.errorhandler(Exception)
+def handle_exception(error):
+    '''
+        Handle exceptions
+    '''
+    return jsonify({"error": str(error)}), 500
 
 # For wsgi_mod
 application = app
