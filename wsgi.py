@@ -22,4 +22,5 @@ def index():
                     mimetype = "text/plain",
                     headers={"X-Your-Ip": request.remote_addr})
 
+# For wsgi_mod
 application = app
