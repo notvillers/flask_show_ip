@@ -1,5 +1,5 @@
 '''
-    Webapp.py is the main file that runs the web application.
+    Flask webapp
 '''
 from flask import Flask, request, Response
 from werkzeug.middleware.proxy_fix import ProxyFix
