@@ -21,6 +21,8 @@ def index():
     '''
         Index
     '''
+    forwarded_for = request.headers.get('X-Forwarded-For')
+    print(forwarded_for)
     l.log(f"Request from {request.remote_addr}")
     return Response(f"{request.remote_addr or ''}\n",
                     mimetype = "text/plain",
