@@ -3,10 +3,17 @@
 '''
 
 from flask import Flask, request, Response
+from werkzeug.middleware.proxy_fix import ProxyFix
 from logger import Logger as L
 import config as cfg
 
 app: Flask = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app,
+                        x_for = 1,
+                        x_proto = 1,
+                        x_host = 1,
+                        x_prefix = 1)
+
 l: L = L(cfg.flask_log_file)
 
 @app.route('/')

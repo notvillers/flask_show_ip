@@ -10,6 +10,9 @@ import config as cfg
 def run(l: L) -> None:
     '''
         Runs the web application
+
+        Args:
+            l (L): Logger object
     '''
     l.log("Server started")
     try:
