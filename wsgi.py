@@ -1,7 +1,6 @@
 '''
     Flask webapp
 '''
-import os
 from flask import Flask, request, Response, jsonify
 from werkzeug.middleware.proxy_fix import ProxyFix
 
