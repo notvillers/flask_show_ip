@@ -15,7 +15,7 @@ def index():
         Index
     '''
     l.log(f"Request from {request.remote_addr}")
-    return Response(f"{request.remote_addr or ""}\n",
+    return Response(f"{request.remote_addr or ''}\n",
                     mimetype = "text/plain",
                     headers={"X-Your-Ip": request.remote_addr})
 
