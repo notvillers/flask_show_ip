@@ -13,6 +13,13 @@ app.wsgi_app = ProxyFix(app.wsgi_app,
                         x_host = 1,
                         x_prefix = 1)
 
+@app.errorhandler(Exception)
+def handle_exception(_):
+    '''
+        Handle exceptions
+    '''
+    return jsonify({"error": "unexpected error"}), 500
+
 
 # Index route
 @app.route('/')
@@ -24,12 +31,6 @@ def index():
                     mimetype = "text/plain",
                     headers = {"X-Your-Ip": request.remote_addr})
 
-@app.errorhandler(Exception)
-def handle_exception(error):
-    '''
-        Handle exceptions
-    '''
-    return jsonify({"error": str(error)}), 500
 
 # For wsgi_mod
 application = app
