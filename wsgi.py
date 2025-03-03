@@ -31,7 +31,7 @@ def index():
     '''
     return Response(f"{request.remote_addr or ''}\n",
                     mimetype = "text/plain",
-                    headers = {"X-Your-Ip": request.remote_addr})
+                    headers = {"X-Your-Ip": request.remote_addr or ''})
 
 
 # For wsgi_mod
