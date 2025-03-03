@@ -7,6 +7,7 @@ PORT: int = 1338
 
 log_path: str = os.path.join(os.path.dirname(__file__),
                              "log")
+
 if not os.path.exists(log_path):
     os.mkdir(log_path)
 

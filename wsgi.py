@@ -2,7 +2,7 @@
     WSGI module
 '''
 
-from waitress import serve
+from waitress import serve # pylint: disable=import-error
 from logger import Logger as L
 from webapp import app
 import config as cfg
