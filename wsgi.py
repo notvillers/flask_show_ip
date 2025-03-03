@@ -1,6 +1,7 @@
 '''
     Flask webapp
 '''
+import os
 from flask import Flask, request, Response
 from werkzeug.middleware.proxy_fix import ProxyFix
 
@@ -12,15 +13,20 @@ app.wsgi_app = ProxyFix(app.wsgi_app,
                         x_host = 1,
                         x_prefix = 1)
 
+
 # Index route
 @app.route('/')
 def index():
     '''
         Index
     '''
-    return Response(f"{request.remote_addr or ''}\n",
-                    mimetype = "text/plain",
-                    headers={"X-Your-Ip": request.remote_addr})
+    try:
+        return Response(f"{request.remote_addr or ''}\n",
+                        mimetype = "text/plain",
+                        headers = {"X-Your-Ip": request.remote_addr})
+    except Exception as e: # pylint: disable=broad-exception-caught
+        return Response(f"{e}\n",
+                        mimetype = "text/plain")
 
 # For wsgi_mod
 application = app
