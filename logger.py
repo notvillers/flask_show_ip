@@ -18,7 +18,7 @@ class Logger:
             Logs the message
         '''
         Path(self.path).touch(exist_ok = True)
-        message_to_log: str = f"{datetime.now().strftime("%Y.%m.%d %H:%M:%S")}\t{message}\n"
+        message_to_log: str = f"{datetime.now().strftime('%Y.%m.%d %H:%M:%S')}\t{message}\n"
         with open(self.path,
                   "a+",
                   encoding = "utf-8-sig") as file:
