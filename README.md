@@ -10,3 +10,6 @@ It can be ```curl```-ed.
 4. Create the http server config file. (An [Apache2 example](./etc/apache2.config) can be found in the repo.)
 5. Run it with [start.sh](./start.sh) or [start](./start)
 6. **GG**
+
+### Example
+[https://ip.villers.website/](https://ip.villers.website/)
