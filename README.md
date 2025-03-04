@@ -11,5 +11,5 @@ It can be ```curl```-ed.
 5. Run it with [start.sh](./start.sh) or [start](./start)
 6. **GG**
 
-### Example
+## Example
 [https://ip.villers.website/](https://ip.villers.website/)
