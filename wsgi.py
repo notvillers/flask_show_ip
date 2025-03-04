@@ -1,7 +1,7 @@
 '''
     Flask webapp
 '''
-from flask import Flask, request, Response, jsonify
+from flask import Flask, request, Response
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 # Flask app
@@ -12,6 +12,19 @@ app.wsgi_app = ProxyFix(app.wsgi_app,
                         x_host = 1,
                         x_prefix = 1)
 
+@app.errorhandler(404)
+def page_not_found(_):
+    '''
+        Handle 404 errors
+
+        Args:
+            _: Exception (ignored)
+    '''
+    return Response("Page not found",
+                    mimetype = "text/plain",
+                    status = 404)
+
+
 @app.errorhandler(Exception)
 def handle_exception(_: Exception):
     '''
@@ -20,7 +33,9 @@ def handle_exception(_: Exception):
         Args:
             _: Exception (ignored)
     '''
-    return jsonify({"error": "unexpected error"}), 500
+    return Response("Unexpected error",
+                    mimetype = "text/plain",
+                    status = 500)
 
 
 # Index route
