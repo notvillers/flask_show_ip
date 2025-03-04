@@ -1,5 +1,5 @@
 #!/bin/bash
-port = 1338
+port=1338
 script_dir=$(dirname "$0")
 cd $script_dir
 source .venv/bin/activate
