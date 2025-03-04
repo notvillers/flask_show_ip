@@ -13,7 +13,7 @@ app.wsgi_app = ProxyFix(app.wsgi_app,
                         x_prefix = 1)
 
 @app.errorhandler(404)
-def page_not_found(_):
+def page_not_found(_: Exception):
     '''
         Handle 404 errors
 
