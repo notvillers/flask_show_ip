@@ -13,7 +13,7 @@ app.wsgi_app = ProxyFix(app.wsgi_app,
                         x_prefix = 1)
 
 @app.errorhandler(Exception)
-def handle_exception(_):
+def handle_exception(_: Exception):
     '''
         Handle exceptions
 
