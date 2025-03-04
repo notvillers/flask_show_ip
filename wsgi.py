@@ -12,30 +12,48 @@ app.wsgi_app = ProxyFix(app.wsgi_app,
                         x_host = 1,
                         x_prefix = 1)
 
+# Error response
+def error_response(content: str,
+                   status: int = 500) -> Response:
+    '''
+        Create an error response
+
+        Args:
+            content (str): Response content
+            status (int): HTTP status code
+
+        Returns:
+            Response: Flask response
+    '''
+    return Response(content,
+                    mimetype = "text/plain",
+                    status = status)
+
+
+# 404 error handler
 @app.errorhandler(404)
-def page_not_found(_: Exception):
+def page_not_found(_: Exception) -> Response:
     '''
         Handle 404 errors
 
         Args:
             _: Exception (ignored)
     '''
-    return Response("Page not found",
-                    mimetype = "text/plain",
-                    status = 404)
+    return error_response(content = "Page not found",
+                          status = 404)
 
 
+# 500 error handler
 @app.errorhandler(Exception)
-def handle_exception(_: Exception):
+def handle_exception(_: Exception) -> Response:
     '''
         Handle exceptions
 
         Args:
             _: Exception (ignored)
     '''
-    return Response("Unexpected error",
-                    mimetype = "text/plain",
-                    status = 500)
+    return error_response(content = "Unexpected error",
+                          status = 500)
 
 
 # Index route
