@@ -64,7 +64,8 @@ def index():
     '''
     return Response(f"{request.remote_addr or ''}\n",
                     mimetype = "text/plain",
-                    headers = {"X-Your-Ip": request.remote_addr or ''})
+                    headers = {"X-Your-Ip": request.remote_addr or ''},
+                    status = 200)
 
 
 # For wsgi_mod
